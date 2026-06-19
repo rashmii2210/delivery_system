@@ -1,8 +1,36 @@
 # 🚚 Delivery Assignment System
 
+![C++](https://img.shields.io/badge/C%2B%2B-17-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![Algorithm](https://img.shields.io/badge/Algorithm-Dijkstra-orange)
+![Status](https://img.shields.io/badge/Status-Completed-success)
+
 A hybrid **FastAPI + C++ delivery optimization platform** that assigns delivery orders to riders using graph-based shortest-path routing. The API layer handles request validation and orchestration, while a native C++ engine performs route computation and rider assignment for improved performance.
 
-## Overview
+---
+
+# 📑 Table of Contents
+
+* [Overview](#overview)
+* [Demo](#demo)
+* [Architecture](#architecture)
+* [Features](#features)
+* [Technology Stack](#technology-stack)
+* [Algorithms](#algorithms)
+* [Project Structure](#project-structure)
+* [Getting Started](#getting-started)
+* [API Endpoints](#api-endpoints)
+* [Benchmark Results](#benchmark-results)
+* [Example Workflow](#example-workflow)
+* [Engineering Decisions](#engineering-decisions)
+* [Known Limitations](#known-limitations)
+* [Future Improvements](#future-improvements)
+* [Key Learnings](#key-learnings)
+* [Highlights](#highlights)
+
+---
+
+# Overview
 
 Modern delivery platforms must efficiently assign orders while minimizing travel distance and balancing rider workload.
 
@@ -23,8 +51,16 @@ The architecture separates API concerns from computational logic, allowing the r
   <video src="https://github.com/user-attachments/assets/a4958697-a7c4-4908-8678-09b7fc54208b" width="500" autoplay loop controls playsinline></video>
 </p>
 
+The demo showcases:
 
-## Architecture
+* Rider assignment using `/assign`
+* Shortest-path routing with Dijkstra's Algorithm
+* Workload balancing across riders
+* Performance benchmarking using `/benchmark`
+
+---
+
+# Architecture
 
 ```text
                     ┌─────────────┐
@@ -58,15 +94,15 @@ The architecture separates API concerns from computational logic, allowing the r
 
 ---
 
-## Features
+# Features
 
-### Graph-Based Route Optimization
+## Graph-Based Route Optimization
 
 * Models delivery networks as weighted graphs
 * Supports arbitrary city layouts
-* Computes shortest delivery routes using Dijkstra's algorithm
+* Computes shortest delivery routes using Dijkstra's Algorithm
 
-### Rider Assignment Engine
+## Rider Assignment Engine
 
 * Assigns orders dynamically to available riders
 * Considers:
@@ -75,21 +111,21 @@ The architecture separates API concerns from computational logic, allowing the r
   * Rider workload
   * Order priority
 
-### Benchmark Mode
+## Benchmark Mode
 
 * Generates random delivery networks
 * Simulates large-scale workloads
 * Measures assignment performance
 
-### API-Driven Design
+## API-Driven Design
 
 * RESTful endpoints
-* Request validation with Pydantic
+* Request validation using Pydantic
 * Interactive Swagger documentation
 
 ---
 
-## Technology Stack
+# Technology Stack
 
 | Layer              | Technology                          |
 | ------------------ | ----------------------------------- |
@@ -102,9 +138,9 @@ The architecture separates API concerns from computational logic, allowing the r
 
 ---
 
-## Algorithms
+# Algorithms
 
-### Shortest Path Routing
+## Shortest Path Routing
 
 The routing engine uses Dijkstra's Algorithm to compute minimum-distance paths between locations.
 
@@ -114,12 +150,12 @@ Complexity:
 O((V + E) log V)
 ```
 
-where:
+Where:
 
-* V = number of nodes
-* E = number of edges
+* V = Number of Nodes
+* E = Number of Edges
 
-### Rider Assignment
+## Rider Assignment
 
 Orders are assigned using a priority-aware scoring strategy that balances:
 
@@ -134,7 +170,7 @@ The rider with the best score receives the order.
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 delivery_system/
@@ -162,14 +198,14 @@ delivery_system/
 
 ---
 
-## Getting Started
+# Getting Started
 
-### Prerequisites
+## Prerequisites
 
 * Python 3.10+
 * Precompiled `delivery.exe`
 
-### Installation
+## Installation
 
 ```bash
 cd backend
@@ -198,13 +234,13 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## API Endpoints
+# API Endpoints
 
-### POST /assign
+## POST /assign
 
 Assign delivery orders to riders.
 
-Input:
+### Input
 
 ```json
 {
@@ -215,7 +251,7 @@ Input:
 }
 ```
 
-Example Response:
+### Example Response
 
 ```json
 {
@@ -235,11 +271,11 @@ Example Response:
 
 ---
 
-### POST /benchmark
+## POST /benchmark
 
 Generate synthetic delivery networks and evaluate assignment performance.
 
-Request:
+### Request
 
 ```json
 {
@@ -250,7 +286,7 @@ Request:
 }
 ```
 
-Returns:
+### Returns
 
 * Execution time
 * Rider load distribution
@@ -258,9 +294,36 @@ Returns:
 
 ---
 
-## Example Workflow
+# Benchmark Results
 
-### Input
+Example benchmark configuration:
+
+```json
+{
+  "numNodes": 100,
+  "numEdges": 500,
+  "numRiders": 20,
+  "numOrders": 1000
+}
+```
+
+Example output from this project:
+
+```json
+{
+  "timeTakenMs": 20,
+  "totalOrders": 1000,
+  "totalRiders": 20
+}
+```
+
+The routing engine successfully processed **1000 delivery orders across a 100-node graph in approximately 20 milliseconds**, demonstrating efficient shortest-path computation and rider assignment performance.
+
+---
+
+# Example Workflow
+
+## Input
 
 ```text
 Hub ----5---- A
@@ -283,7 +346,7 @@ Rider:
 Rider1 starts at Hub
 ```
 
-### Output
+## Output
 
 ```text
 Order 0 → Rider1
@@ -295,39 +358,24 @@ Workload: 2
 
 ---
 
-### API Demonstration
+# Engineering Decisions
 
-* Submit riders, orders, and city graph
-* Compute shortest paths
-* Assign riders
-* View workload distribution
-
-Demo Video:
-
-```text
-https://youtu.be/YOUR_VIDEO_ID
-```
-
----
-
-## Engineering Decisions
-
-### Why C++?
+## Why C++?
 
 Shortest-path routing is computationally intensive and benefits from native execution speed.
 
 Using C++ for graph traversal allows the system to scale more effectively than a pure Python implementation.
 
-### Why FastAPI?
+## Why FastAPI?
 
 FastAPI provides:
 
 * Automatic validation
 * OpenAPI documentation
-* High-performance asynchronous APIs
+* High-performance APIs
 * Simple integration with external services
 
-### Why JSON-Based IPC?
+## Why JSON-Based IPC?
 
 The routing engine remains independently executable and testable from the command line.
 
@@ -339,7 +387,7 @@ Benefits:
 
 ---
 
-## Known Limitations
+# Known Limitations
 
 Current implementation requires:
 
@@ -347,25 +395,23 @@ Current implementation requires:
 * Rider IDs to be contiguous
 * Order IDs to be contiguous
 
-Example:
+Supported:
 
 ```text
 0,1,2,3
 ```
 
-Supported
+Not Supported:
 
 ```text
 1,5,10
 ```
 
-Not supported
-
 A future enhancement would introduce ID remapping inside the I/O layer.
 
 ---
 
-## Future Improvements
+# Future Improvements
 
 * gRPC-based communication between Python and C++
 * Real-time rider tracking
@@ -373,18 +419,30 @@ A future enhancement would introduce ID remapping inside the I/O layer.
 * Min-Cost Max-Flow optimization
 * Vehicle Routing Problem (VRP) solver
 * Dockerized deployment pipeline
-* CI/CD with GitHub Actions
+* CI/CD using GitHub Actions
 
 ---
 
-## Key Learnings
+# Key Learnings
 
-* Hybrid system design
+* Hybrid Python + C++ system architecture
 * Graph algorithms in production-style workflows
 * FastAPI backend development
-* Cross-language communication
-* Performance benchmarking
+* Cross-language communication using JSON IPC
+* Performance benchmarking and scalability testing
 * Route optimization fundamentals
+* API design and request validation
 
-```
-```
+---
+
+# Highlights
+
+This project demonstrates:
+
+* Graph Algorithms (Dijkstra's Algorithm)
+* C++ Systems Programming
+* FastAPI Backend Development
+* Cross-Language Architecture (Python ↔ C++)
+* Performance Benchmarking
+* Delivery Route Optimization
+* REST API Design
