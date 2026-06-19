@@ -19,7 +19,9 @@ The architecture separates API concerns from computational logic, allowing the r
 ---
 
 ## Demo
-
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/a4958697-a7c4-4908-8678-09b7fc54208b" width="500" autoplay loop controls playsinline></video>
+</p>
 
 
 ## Architecture
