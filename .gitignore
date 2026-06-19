@@ -1,0 +1,78 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# FastAPI / logs
+*.log
+
+# =========================
+# IDEs
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# C++ Build Files
+# =========================
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# =========================
+# Generated JSON Files
+# =========================
+input.json
+output.json
+
+# Benchmark outputs
+benchmark_output.json
+
+# =========================
+# Environment Variables
+# =========================
+.env
+
+# =========================
+# Coverage / Testing
+# =========================
+.coverage
+pytest_cache/
+htmlcov/
+
+# =========================
+# Misc
+# =========================
+*.tmp
+*.temp
