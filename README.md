@@ -1,3 +1,5 @@
+<div align="center">
+  
 # 🚚 Delivery Assignment System
 
 ![C++](https://img.shields.io/badge/C%2B%2B-17-blue)
@@ -6,6 +8,12 @@
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 
 A hybrid **FastAPI + C++ delivery optimization platform** that assigns delivery orders to riders using graph-based shortest-path routing. The API layer handles request validation and orchestration, while a native C++ engine performs route computation and rider assignment for improved performance.
+
+---
+
+**Built by [Rashmi Manani](https://github.com/rashmii2210)**
+
+</div>
 
 ---
 
